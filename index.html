@@ -467,6 +467,62 @@
       align-items: center;
     }
 
+    /* Requirements accordion */
+    .req-list {
+      list-style: none;
+      padding: 0;
+      margin: 24px 0 0;
+      display: grid;
+      gap: 4px;
+    }
+    .req-list details {
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      overflow: hidden;
+      background: var(--bg);
+    }
+    .req-list summary {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      padding: 16px 20px;
+      cursor: pointer;
+      font-size: 16px;
+      font-weight: 500;
+      color: var(--ink);
+      list-style: none;
+      background: var(--bg-soft);
+      transition: background 0.15s ease;
+      user-select: none;
+    }
+    .req-list summary::-webkit-details-marker { display: none; }
+    .req-list summary:hover { background: var(--line); }
+    .req-list details[open] summary { background: var(--bg); }
+    .req-icon {
+      color: var(--accent);
+      font-weight: 700;
+      font-size: 18px;
+      min-width: 22px;
+      line-height: 1;
+    }
+    .req-expand {
+      margin-left: auto;
+      color: var(--ink-3);
+      font-size: 20px;
+      font-weight: 300;
+      line-height: 1;
+      transition: transform 0.2s ease;
+    }
+    .req-list details[open] .req-expand { transform: rotate(45deg); }
+    .req-list details > p {
+      margin: 0;
+      padding: 14px 20px 16px 56px;
+      font-size: 15px;
+      color: var(--ink-2);
+      line-height: 1.6;
+      border-top: 1px solid var(--line);
+    }
+
     /* Audience content swap */
     [data-audience] { display: none; }
     [data-audience].is-active { display: block; }
@@ -534,7 +590,7 @@
           <div class="section-label">Why this, why now</div>
           <h2>Every strong applicant looks the same on paper — the ones who stand out built something only they could have built.</h2>
           <p>Admissions officers and hiring managers read thousands of resumes that look nearly identical. The students who break through are rarely the ones with the longest list of activities; they're the ones who shipped something real, with their own name on it. That kind of work has never been easier to produce than it is right now, and it has never mattered more to the people reading applications.</p>
-          <p>Ship isn't a typing class or a summer coding toy. It's a structured, project-based program in product thinking, design, engineering, and AI fluency — the same skill stack the best adults in the workforce are actively learning. Because we cap the cohort at 10–12, every student gets real feedback on their work; and because it's fully virtual, there are no commutes, drop-offs, or logistics headaches for you to manage.</p>
+          <p>Ship is a structured, project-based program in product thinking, design, engineering, and AI fluency. The cohort is capped at 10–12 so every student gets real feedback — and it's fully virtual, so there are no commutes or drop-off logistics.</p>
         </div>
       </div>
     </section>
@@ -542,36 +598,11 @@
     <!-- WHAT THEY'LL SHIP -->
     <section>
       <div class="wrap">
-        <div class="section-label">What your student will ship</div>
-        <h2 data-audience="students" class="is-active">What you'll actually walk away with</h2>
-        <h2 data-audience="parents">Six real projects over six weeks</h2>
-        <p data-audience="students" class="is-active" style="max-width: 680px;">Every session pairs one new concept with one real thing to build, so by the end of the program you have six actual projects you shipped — not a binder of notes. Here's the arc we'll work through together.</p>
-        <p data-audience="parents" style="max-width: 680px;">Every session pairs one new concept with one concrete thing to build, so students finish the program with six working projects rather than a binder of notes. Here's the arc we'll work through, week by week.</p>
-
-        <ol class="ship-list">
-          <li><span class="num">01</span><div><b>A personal website</b> live on a real custom domain.</div></li>
-          <li><span class="num">02</span><div><b>An interactive app</b> saved to their iPhone home screen as a PWA.</div></li>
-          <li><span class="num">03</span><div><b>A data-powered app</b> pulling live info from the real internet.</div></li>
-          <li><span class="num">04</span><div><b>A full-stack app</b> with logins, saved data, and real users.</div></li>
-          <li><span class="num">05</span><div><b>An AI-powered app</b> with Claude built in — plus their own custom Claude Skill.</div></li>
-          <li><span class="num">06</span><div><b>A native iOS app</b> running on their own phone, ending in a demo day.</div></li>
-        </ol>
-      </div>
-    </section>
-
-    <!-- SKILLS -->
-    <section>
-      <div class="wrap">
-        <div class="section-label">The three skills they'll actually learn</div>
-        <h2 data-audience="students" class="is-active">Building software is quietly becoming one job — and you'll practice all three sides of it.</h2>
-        <h2 data-audience="parents">Building software is quietly becoming one job, and Ship teaches all three sides of it.</h2>
-
-        <div class="skills">
-          <div class="skill"><h3>Product intuition</h3><p>How to decide <em>what</em> to build — and what not to.</p></div>
-          <div class="skill"><h3>Design sense</h3><p>How to make it feel great to use — typography, spacing, and the small details people notice without knowing why.</p></div>
-          <div class="skill"><h3>Engineering fluency</h3><p>How to make it actually work — and ship it live.</p></div>
-        </div>
-        <p style="margin-top:24px;">Underneath all three, there's a meta-skill that makes the rest of it possible: <strong style="color:var(--ink)">how to get real work out of AI</strong>. Not using it to dodge homework — using it the way the best builders in the workforce are learning to use it right now, as a patient collaborator that helps you think more clearly, plan more carefully, and ship more often.</p>
+        <div class="section-label">What you'll build</div>
+        <h2 data-audience="students" class="is-active">A portfolio of apps, websites, and Claude Skills</h2>
+        <h2 data-audience="parents">A portfolio of real projects, all built by your student</h2>
+        <p data-audience="students" class="is-active" style="max-width:660px;">Six sessions, six shipped projects — a personal website, interactive apps, data-powered tools, a full-stack app with real users, an AI-powered feature, and a native iOS app. All live. All yours.</p>
+        <p data-audience="parents" style="max-width:660px;">Six sessions, six shipped projects — a personal website, interactive apps, data-powered tools, a full-stack app with real users, an AI-powered feature, and a native iOS app. All live, all built by your student, all linkable in a college application or on a resume.</p>
       </div>
     </section>
 
@@ -596,7 +627,6 @@
               <p style="margin: 10px 0 0; font-size: 14px; color: var(--ink-3);">Check with your school or education program — Claude Pro may be available at a discount or free through institutional access.</p>
             </div>
         </div>
-        <p style="margin-top:24px;">We work exclusively with the <strong style="color:var(--ink)">real tools professional builders use every day</strong> — Claude, ChatGPT, Gemini, GitHub, Vercel, Supabase, Claude Code, and Capacitor — rather than simplified classroom versions of them. The muscle memory students build over six weeks is the same muscle memory they'll use in college, in internships, and in every project they start on their own afterward.</p>
       </div>
     </section>
 
@@ -615,27 +645,27 @@
     <section>
       <div class="wrap">
         <div class="section-label">What you'll need</div>
-        <h2>A few things to have ready before Day 1</h2>
-        <p style="max-width: 680px;">The program is designed to be genuinely practical, which means we work with real tools from the first session. To keep up and get the most out of each week, every student will need three things in place before the cohort starts.</p>
-
-        <div class="skills" style="margin-top: 28px;">
-          <div class="skill">
-            <h3>A capable laptop</h3>
-            <p>Any modern computer from 2020 or newer with at least 8GB of RAM — Mac or Windows. As a reference point, an M1 MacBook Pro with 8GB RAM runs everything in the curriculum comfortably.</p>
-          </div>
-          <div class="skill">
-            <h3>Claude Pro ($20/mo)</h3>
-            <p>A Claude Pro subscription gives you meaningfully higher usage limits than the free plan, and we'll push those limits regularly. You can subscribe for the two months of the program and cancel afterward — and learning how token consumption and model usage works is itself part of the curriculum.</p>
-          </div>
-          <div class="skill">
-            <h3>$5 in Claude API credits</h3>
-            <p>In Week 5, we build AI-powered features using the Claude API directly. You'll add $5 in prepaid API credits to an Anthropic account — plenty for everything we do in class, with room to experiment on your own afterward.</p>
-          </div>
-        </div>
-
-        <div class="pilot" style="margin-top: 28px;">
-          <p><strong>Total out-of-pocket:</strong> $50 (program) + ~$40 (two months of Claude Pro) + $5 (API credits) = roughly $95 for the full experience. We'll confirm you have all three in place before finalizing your spot.</p>
-        </div>
+        <h2>Three things to have ready before Day 1</h2>
+        <ul class="req-list">
+          <li>
+            <details>
+              <summary><span class="req-icon">✓</span> A laptop from 2020 or newer (8GB RAM+, Mac or Windows) <span class="req-expand">+</span></summary>
+              <p>An M1 MacBook Pro with 8GB RAM runs everything in the curriculum comfortably and is a good reference point. Most modern laptops meet this bar.</p>
+            </details>
+          </li>
+          <li>
+            <details>
+              <summary><span class="req-icon">✓</span> A Claude Pro subscription ($20/month) <span class="req-expand">+</span></summary>
+              <p>The free plan hits usage limits quickly — we'll need Pro. Subscribe for the two months the program runs and cancel afterward. Understanding how token consumption and usage limits work is itself part of what we'll cover. Check with your school or education program for potential discounts or free institutional access.</p>
+            </details>
+          </li>
+          <li>
+            <details>
+              <summary><span class="req-icon">✓</span> $5 in Claude API credits <span class="req-expand">+</span></summary>
+              <p>For Week 5, when we build AI-powered features using the Claude API directly. Five dollars is plenty for everything we do in class, with room left over to experiment on your own.</p>
+            </details>
+          </li>
+        </ul>
       </div>
     </section>
 
