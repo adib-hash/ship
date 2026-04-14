@@ -80,7 +80,8 @@
       justify-content: space-between;
       gap: 16px;
     }
-    .brand {
+    .brand, a.brand {
+      text-decoration: none;
       font-family: "Playfair Display", serif;
       font-weight: 700;
       font-size: 1.4rem;
@@ -443,7 +444,7 @@
 <body>
   <header class="topbar">
     <div class="wrap topbar-inner">
-      <div class="brand">Ship<em>by ihsan.build</em></div>
+      <a class="brand" href="#top">Ship<em>by ihsan.build</em></a>
       <div class="toggle" role="tablist" aria-label="Audience">
         <button type="button" data-audience-btn="students" aria-pressed="true">For Students</button>
         <button type="button" data-audience-btn="parents" aria-pressed="false">For Parents</button>
