@@ -141,8 +141,8 @@
     }
 
     /* Hero */
-    .hero { padding: 88px 0 64px; }
-    @media (min-width: 1024px) { .hero { padding: 128px 0 96px; } }
+    .hero { padding: 32px 0 32px; }
+    @media (min-width: 1024px) { .hero { padding: 48px 0 48px; } }
     .eyebrow {
       display: inline-block;
       font-size: 13px;
@@ -201,8 +201,8 @@
     .pilot p { margin: 0; font-size: 15px; color: var(--ink-2); }
 
     /* Sections */
-    section { padding: 64px 0; border-top: 1px solid var(--line); }
-    @media (min-width: 1024px) { section { padding: 96px 0; } }
+    section { padding: 32px 0; border-top: 1px solid var(--line); }
+    @media (min-width: 1024px) { section { padding: 44px 0; } }
     section:first-of-type { border-top: 0; }
     .section-label {
       font-size: 13px;
@@ -297,9 +297,9 @@
 
     /* Apply */
     .apply {
-      padding: 64px 0 112px;
+      padding: 32px 0 64px;
     }
-    @media (min-width: 1024px) { .apply { padding: 96px 0 144px; } }
+    @media (min-width: 1024px) { .apply { padding: 44px 0 80px; } }
     .apply-card {
       padding: 44px 32px;
       background: var(--ink);
@@ -467,6 +467,19 @@
       align-items: center;
     }
 
+    /* Two-column layout for teacher + requirements */
+    .two-col {
+      display: grid;
+      gap: 48px;
+    }
+    @media (min-width: 768px) {
+      .two-col {
+        grid-template-columns: 3fr 2fr;
+        gap: 64px;
+        align-items: start;
+      }
+    }
+
     /* Requirements accordion */
     .req-list {
       list-style: none;
@@ -584,6 +597,7 @@
           <h2>Everyone else is doing the same checklist — you can build something only you could have built.</h2>
           <p>Grades, APs, honor societies, lab research, robotics — every strong student has them, which is exactly why they stop being interesting on their own. The people who actually stand out are the ones who went off-script and shipped something real with their name attached to it. That has never been easier to do than it is right now, and it has never mattered more.</p>
           <p>If you're even a little curious about building things, this is honestly one of the most useful ways you can spend six weeks of your life.</p>
+          <p style="margin-top: 1.5em;"><strong style="color:var(--ink)">What you'll walk away with:</strong> a portfolio of personal websites, interactive apps, data-powered tools, a full-stack app, an AI-powered feature, and a native iOS app — all live, all yours.</p>
         </div>
 
         <div data-audience="parents">
@@ -591,18 +605,8 @@
           <h2>Every strong applicant looks the same on paper — the ones who stand out built something only they could have built.</h2>
           <p>Admissions officers and hiring managers read thousands of resumes that look nearly identical. The students who break through are rarely the ones with the longest list of activities; they're the ones who shipped something real, with their own name on it. That kind of work has never been easier to produce than it is right now, and it has never mattered more to the people reading applications.</p>
           <p>Ship is a structured, project-based program in product thinking, design, engineering, and AI fluency. The cohort is capped at 10–12 so every student gets real feedback — and it's fully virtual, so there are no commutes or drop-off logistics.</p>
+          <p style="margin-top: 1.5em;"><strong style="color:var(--ink)">What they'll build:</strong> a portfolio of personal websites, interactive apps, data-powered tools, a full-stack app, an AI-powered feature, and a native iOS app — all live, all theirs.</p>
         </div>
-      </div>
-    </section>
-
-    <!-- WHAT THEY'LL SHIP -->
-    <section>
-      <div class="wrap">
-        <div class="section-label">What you'll build</div>
-        <h2 data-audience="students" class="is-active">A portfolio of apps, websites, and Claude Skills</h2>
-        <h2 data-audience="parents">A portfolio of real projects, all built by your student</h2>
-        <p data-audience="students" class="is-active" style="max-width:660px;">Six sessions, six shipped projects — a personal website, interactive apps, data-powered tools, a full-stack app with real users, an AI-powered feature, and a native iOS app. All live. All yours.</p>
-        <p data-audience="parents" style="max-width:660px;">Six sessions, six shipped projects — a personal website, interactive apps, data-powered tools, a full-stack app with real users, an AI-powered feature, and a native iOS app. All live, all built by your student, all linkable in a college application or on a resume.</p>
       </div>
     </section>
 
@@ -630,42 +634,42 @@
       </div>
     </section>
 
-    <!-- TEACHER -->
+    <!-- TEACHER + REQUIREMENTS -->
     <section class="teacher">
       <div class="wrap">
-        <div class="section-label">Who's teaching</div>
-        <h2>Adib Choudhury</h2>
-        <p>Operator, investor, and builder based in San Francisco. Adib grew up in Northern Virginia and earned a <strong style="color:var(--ink)">B.S. in Commerce (Finance) from the University of Virginia's McIntire School of Commerce</strong>. His career spans software companies, investing and M&amp;A, and executive leadership, and he currently serves on the boards of several startups and nonprofits.</p>
-        <p>Outside of work, Adib has shipped <strong style="color:var(--ink)">more than a dozen personal apps using AI</strong> — including a Quranic study app, a native iOS reading tracker, and a personal stock metrics dashboard — all on <a href="https://ihsan.build">ihsan.build</a>. He's teaching Ship because he believes every curious student should know how to turn an idea into a real, shippable product.</p>
-        <p>→ More about Adib: <a href="https://adib.ihsan.build"><strong>adib.ihsan.build</strong></a></p>
-      </div>
-    </section>
-
-    <!-- REQUIREMENTS -->
-    <section>
-      <div class="wrap">
-        <div class="section-label">What you'll need</div>
-        <h2>Three things to have ready before Day 1</h2>
-        <ul class="req-list">
-          <li>
-            <details>
-              <summary><span class="req-icon">✓</span> A laptop from 2020 or newer (8GB RAM+, Mac or Windows) <span class="req-expand">+</span></summary>
-              <p>An M1 MacBook Pro with 8GB RAM runs everything in the curriculum comfortably and is a good reference point. Most modern laptops meet this bar.</p>
-            </details>
-          </li>
-          <li>
-            <details>
-              <summary><span class="req-icon">✓</span> A Claude Pro subscription ($20/month) <span class="req-expand">+</span></summary>
-              <p>The free plan hits usage limits quickly — we'll need Pro. Subscribe for the two months the program runs and cancel afterward. Understanding how token consumption and usage limits work is itself part of what we'll cover. Check with your school or education program for potential discounts or free institutional access.</p>
-            </details>
-          </li>
-          <li>
-            <details>
-              <summary><span class="req-icon">✓</span> $5 in Claude API credits <span class="req-expand">+</span></summary>
-              <p>For Week 5, when we build AI-powered features using the Claude API directly. Five dollars is plenty for everything we do in class, with room left over to experiment on your own.</p>
-            </details>
-          </li>
-        </ul>
+        <div class="two-col">
+          <div>
+            <div class="section-label">Who's teaching</div>
+            <h2>Adib Choudhury</h2>
+            <p>Operator, investor, and builder based in San Francisco. Adib grew up in Northern Virginia and earned a <strong style="color:var(--ink)">B.S. in Commerce (Finance) from the University of Virginia's McIntire School of Commerce</strong>. His career spans software companies, investing and M&amp;A, and executive leadership, and he currently serves on the boards of several startups and nonprofits.</p>
+            <p>Outside of work, Adib has shipped <strong style="color:var(--ink)">more than a dozen personal apps using AI</strong> — including a Quranic study app, a native iOS reading tracker, and a personal stock metrics dashboard — all on <a href="https://ihsan.build">ihsan.build</a>. He's teaching Ship because he believes every curious student should know how to turn an idea into a real, shippable product.</p>
+            <p>→ <a href="https://adib.ihsan.build"><strong>adib.ihsan.build</strong></a></p>
+          </div>
+          <div>
+            <div class="section-label">What you'll need</div>
+            <h2>Before Day 1</h2>
+            <ul class="req-list">
+              <li>
+                <details>
+                  <summary><span class="req-icon">✓</span> A laptop, 2020 or newer (8GB RAM+) <span class="req-expand">+</span></summary>
+                  <p>Mac or Windows both work. An M1 MacBook Pro with 8GB RAM runs everything comfortably.</p>
+                </details>
+              </li>
+              <li>
+                <details>
+                  <summary><span class="req-icon">✓</span> Claude Pro ($20/month) <span class="req-expand">+</span></summary>
+                  <p>The free plan hits limits quickly. Subscribe for the two months the program runs and cancel afterward. Check with your school — Claude Pro may be available free through institutional access.</p>
+                </details>
+              </li>
+              <li>
+                <details>
+                  <summary><span class="req-icon">✓</span> $5 in Claude API credits <span class="req-expand">+</span></summary>
+                  <p>For Week 5, when we build AI-powered features using the Claude API. Five dollars covers everything in class with room to experiment.</p>
+                </details>
+              </li>
+            </ul>
+          </div>
+        </div>
       </div>
     </section>
 
