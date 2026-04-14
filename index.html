@@ -389,6 +389,44 @@
       color: rgba(251, 247, 240, 0.55);
     }
     .apply-form .form-meta a { color: rgba(251, 247, 240, 0.85); text-decoration: underline; }
+    .check-label {
+      display: flex;
+      gap: 12px;
+      align-items: flex-start;
+      font-size: 15px;
+      font-weight: 400;
+      color: rgba(251, 247, 240, 0.82);
+      cursor: pointer;
+      line-height: 1.5;
+    }
+    .check-label input[type="checkbox"] {
+      appearance: none;
+      -webkit-appearance: none;
+      width: 18px;
+      height: 18px;
+      min-width: 18px;
+      border: 1.5px solid rgba(251, 247, 240, 0.35);
+      border-radius: 5px;
+      background: rgba(251, 247, 240, 0.06);
+      cursor: pointer;
+      margin-top: 2px;
+      transition: background 0.15s ease, border-color 0.15s ease;
+      display: grid;
+      place-items: center;
+    }
+    .check-label input[type="checkbox"]:checked {
+      background: var(--accent);
+      border-color: var(--accent);
+    }
+    .check-label input[type="checkbox"]:checked::after {
+      content: "";
+      width: 10px;
+      height: 6px;
+      border-left: 2px solid #fff;
+      border-bottom: 2px solid #fff;
+      transform: rotate(-45deg) translateY(-1px);
+      display: block;
+    }
     .form-status {
       font-size: 14px;
       padding: 12px 14px;
@@ -473,7 +511,7 @@
             Apply for the pilot
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
           </a>
-          <span class="btn-meta">$50 · 10–12 seats · first come, first served</span>
+          <span class="btn-meta">$50 program fee · $5 API credits · 10–12 seats</span>
         </div>
 
         <div class="pilot">
@@ -565,6 +603,34 @@
       </div>
     </section>
 
+    <!-- REQUIREMENTS -->
+    <section>
+      <div class="wrap">
+        <div class="section-label">What you'll need</div>
+        <h2>A few things to have ready before Day 1</h2>
+        <p style="max-width: 680px;">The program is designed to be genuinely practical, which means we work with real tools from the first session. To keep up and get the most out of each week, every student will need three things in place before the cohort starts.</p>
+
+        <div class="skills" style="margin-top: 28px;">
+          <div class="skill">
+            <h3>A capable laptop</h3>
+            <p>Any modern computer from 2020 or newer with at least 8GB of RAM — Mac or Windows. As a reference point, an M1 MacBook Pro with 8GB RAM runs everything in the curriculum comfortably.</p>
+          </div>
+          <div class="skill">
+            <h3>Claude Pro ($20/mo)</h3>
+            <p>A Claude Pro subscription gives you meaningfully higher usage limits than the free plan, and we'll push those limits regularly. You can subscribe for the two months of the program and cancel afterward — and learning how token consumption and model usage works is itself part of the curriculum.</p>
+          </div>
+          <div class="skill">
+            <h3>$5 in Claude API credits</h3>
+            <p>In Week 5, we build AI-powered features using the Claude API directly. You'll add $5 in prepaid API credits to an Anthropic account — plenty for everything we do in class, with room to experiment on your own afterward.</p>
+          </div>
+        </div>
+
+        <div class="pilot" style="margin-top: 28px;">
+          <p><strong>Total out-of-pocket:</strong> $50 (program) + ~$40 (two months of Claude Pro) + $5 (API credits) = roughly $95 for the full experience. We'll confirm you have all three in place before finalizing your spot.</p>
+        </div>
+      </div>
+    </section>
+
     <!-- APPLY -->
     <section class="apply" id="apply">
       <div class="wrap">
@@ -621,6 +687,24 @@
               <span class="hint">One idea is enough. No wrong answers.</span>
               <textarea name="idea" rows="5" required placeholder="Tell me about the app, tool, or thing you wish existed…"></textarea>
             </label>
+
+            <fieldset style="border: 1px solid rgba(251,247,240,0.18); border-radius: 10px; padding: 20px 20px 16px; margin-top: 4px;">
+              <legend style="font-size: 14px; font-weight: 500; color: rgba(251,247,240,0.88); padding: 0 8px;">Before I can confirm your spot, please confirm the following:</legend>
+              <div style="display: grid; gap: 14px; margin-top: 8px;">
+                <label class="check-label">
+                  <input type="checkbox" name="req_computer" required />
+                  <span>I have access to a laptop from 2020 or newer with at least 8GB of RAM (Mac or Windows).</span>
+                </label>
+                <label class="check-label">
+                  <input type="checkbox" name="req_claude_pro" required />
+                  <span>I will have a Claude Pro subscription active by Day 1 of the program ($20/month — I can cancel after the cohort ends).</span>
+                </label>
+                <label class="check-label">
+                  <input type="checkbox" name="req_api_credits" required />
+                  <span>I'm comfortable adding $5 in Claude API credits for Week 5's API lesson.</span>
+                </label>
+              </div>
+            </fieldset>
 
             <p class="form-status" hidden></p>
 
