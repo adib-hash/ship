@@ -1,0 +1,496 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
+  <title>Ship — Build real apps in 6 weeks. With AI as your co-pilot.</title>
+  <meta name="description" content="A small-cohort virtual program for curious 7th–12th graders who want to ship real apps using AI. 6 weeks. Live on Zoom. Pilot cohort starts June 18." />
+  <meta name="theme-color" content="#FBF7F0" />
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400&family=DM+Sans:wght@400;500;600&display=swap" rel="stylesheet" />
+
+  <style>
+    :root {
+      --bg: #FBF7F0;
+      --bg-soft: #F3ECDF;
+      --ink: #14110E;
+      --ink-2: #3A332B;
+      --ink-3: #6B6257;
+      --line: #E3D9C7;
+      --accent: #C0532E;
+      --accent-soft: #F5E3D8;
+      --radius: 14px;
+    }
+
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; -webkit-text-size-adjust: 100%; }
+    body {
+      margin: 0;
+      background: var(--bg);
+      color: var(--ink);
+      font-family: "DM Sans", -apple-system, BlinkMacSystemFont, sans-serif;
+      font-size: 17px;
+      line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+    }
+    @media (min-width: 768px) { body { font-size: 18px; } }
+
+    h1, h2, h3, h4 {
+      font-family: "Playfair Display", Georgia, serif;
+      font-weight: 600;
+      letter-spacing: -0.01em;
+      color: var(--ink);
+      margin: 0 0 0.5em;
+    }
+    h1 { font-size: clamp(2.2rem, 6vw, 4rem); line-height: 1.05; font-weight: 700; }
+    h2 { font-size: clamp(1.6rem, 3.6vw, 2.4rem); line-height: 1.15; }
+    h3 { font-size: 1.25rem; line-height: 1.3; }
+    p { margin: 0 0 1em; color: var(--ink-2); }
+    a { color: var(--accent); text-decoration: none; }
+    a:hover { text-decoration: underline; }
+
+    .wrap {
+      max-width: 780px;
+      margin: 0 auto;
+      padding: 0 24px;
+    }
+
+    /* Top bar */
+    .topbar {
+      position: sticky;
+      top: 0;
+      z-index: 10;
+      background: rgba(251, 247, 240, 0.88);
+      backdrop-filter: saturate(140%) blur(10px);
+      -webkit-backdrop-filter: saturate(140%) blur(10px);
+      border-bottom: 1px solid var(--line);
+      padding: 14px 0;
+    }
+    .topbar-inner {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+    }
+    .brand {
+      font-family: "Playfair Display", serif;
+      font-weight: 700;
+      font-size: 1.4rem;
+      letter-spacing: -0.01em;
+      color: var(--ink);
+    }
+    .brand em {
+      font-style: italic;
+      font-weight: 500;
+      color: var(--ink-3);
+      font-size: 0.85em;
+      margin-left: 4px;
+    }
+
+    /* Toggle */
+    .toggle {
+      display: inline-flex;
+      background: var(--bg-soft);
+      border: 1px solid var(--line);
+      border-radius: 999px;
+      padding: 4px;
+      gap: 2px;
+    }
+    .toggle button {
+      appearance: none;
+      border: 0;
+      background: transparent;
+      font-family: inherit;
+      font-size: 14px;
+      font-weight: 500;
+      color: var(--ink-3);
+      padding: 8px 16px;
+      border-radius: 999px;
+      cursor: pointer;
+      transition: background 0.18s ease, color 0.18s ease;
+      white-space: nowrap;
+    }
+    .toggle button[aria-pressed="true"] {
+      background: var(--ink);
+      color: var(--bg);
+    }
+    @media (max-width: 480px) {
+      .toggle button { padding: 8px 12px; font-size: 13px; }
+      .brand { font-size: 1.2rem; }
+      .brand em { display: none; }
+    }
+
+    /* Hero */
+    .hero { padding: 72px 0 56px; }
+    .eyebrow {
+      display: inline-block;
+      font-size: 13px;
+      font-weight: 500;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--accent);
+      background: var(--accent-soft);
+      padding: 6px 12px;
+      border-radius: 999px;
+      margin-bottom: 24px;
+    }
+    .hero p.lede {
+      font-size: clamp(1.1rem, 2.2vw, 1.3rem);
+      color: var(--ink-2);
+      max-width: 620px;
+      margin-top: 16px;
+    }
+    .cta-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      margin-top: 32px;
+      align-items: center;
+    }
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: var(--ink);
+      color: var(--bg);
+      padding: 14px 22px;
+      border-radius: 999px;
+      font-weight: 500;
+      font-size: 16px;
+      border: 0;
+      cursor: pointer;
+      transition: transform 0.15s ease, background 0.15s ease;
+    }
+    .btn:hover { background: var(--accent); text-decoration: none; transform: translateY(-1px); }
+    .btn svg { width: 16px; height: 16px; }
+    .btn-meta { font-size: 14px; color: var(--ink-3); }
+
+    /* Pilot banner */
+    .pilot {
+      margin-top: 40px;
+      padding: 20px 24px;
+      background: var(--bg-soft);
+      border: 1px solid var(--line);
+      border-left: 3px solid var(--accent);
+      border-radius: var(--radius);
+    }
+    .pilot strong { color: var(--ink); }
+    .pilot p { margin: 0; font-size: 15px; color: var(--ink-2); }
+
+    /* Sections */
+    section { padding: 56px 0; border-top: 1px solid var(--line); }
+    section:first-of-type { border-top: 0; }
+    .section-label {
+      font-size: 13px;
+      font-weight: 500;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--ink-3);
+      margin-bottom: 16px;
+    }
+
+    /* Ship list */
+    .ship-list {
+      list-style: none;
+      padding: 0;
+      margin: 24px 0 0;
+      display: grid;
+      gap: 14px;
+    }
+    .ship-list li {
+      display: flex;
+      gap: 14px;
+      padding: 18px 20px;
+      background: var(--bg-soft);
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      font-size: 16px;
+      color: var(--ink-2);
+    }
+    .ship-list .num {
+      font-family: "Playfair Display", serif;
+      font-size: 15px;
+      font-weight: 600;
+      color: var(--accent);
+      min-width: 22px;
+      line-height: 1.5;
+    }
+    .ship-list b { color: var(--ink); font-weight: 600; }
+
+    /* Skills */
+    .skills {
+      display: grid;
+      gap: 16px;
+      margin-top: 24px;
+    }
+    @media (min-width: 640px) { .skills { grid-template-columns: repeat(3, 1fr); } }
+    .skill {
+      padding: 22px;
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      background: var(--bg);
+    }
+    .skill h3 { font-size: 1.15rem; margin-bottom: 8px; }
+    .skill p { font-size: 15px; margin: 0; }
+
+    /* Format grid */
+    .facts {
+      display: grid;
+      gap: 12px;
+      margin-top: 24px;
+    }
+    @media (min-width: 640px) { .facts { grid-template-columns: 1fr 1fr; } }
+    .fact {
+      padding: 16px 18px;
+      background: var(--bg-soft);
+      border-radius: var(--radius);
+      border: 1px solid var(--line);
+    }
+    .fact-label {
+      font-size: 12px;
+      font-weight: 500;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      color: var(--ink-3);
+      margin-bottom: 4px;
+    }
+    .fact-value { font-size: 16px; color: var(--ink); font-weight: 500; }
+
+    /* Teacher */
+    .teacher p { font-size: 16px; }
+    .teacher a { font-weight: 500; }
+
+    /* Apply */
+    .apply {
+      padding: 56px 0 96px;
+    }
+    .apply-card {
+      padding: 40px 32px;
+      background: var(--ink);
+      color: var(--bg);
+      border-radius: 20px;
+      text-align: center;
+    }
+    .apply-card h2 { color: var(--bg); margin-bottom: 12px; }
+    .apply-card p { color: rgba(251, 247, 240, 0.78); max-width: 520px; margin: 0 auto 8px; }
+    .apply-card blockquote {
+      margin: 24px auto 28px;
+      font-family: "Playfair Display", serif;
+      font-style: italic;
+      font-size: clamp(1.15rem, 2.4vw, 1.45rem);
+      line-height: 1.4;
+      color: var(--bg);
+      max-width: 520px;
+    }
+    .apply-card .btn {
+      background: var(--accent);
+      color: var(--bg);
+    }
+    .apply-card .btn:hover { background: #D96740; }
+
+    footer {
+      padding: 32px 0 48px;
+      border-top: 1px solid var(--line);
+      font-size: 14px;
+      color: var(--ink-3);
+      text-align: center;
+    }
+    footer a { color: var(--ink-3); text-decoration: underline; }
+
+    /* Audience content swap */
+    [data-audience] { display: none; }
+    [data-audience].is-active { display: block; }
+
+    /* Fade on swap */
+    .swap { animation: fade 0.25s ease; }
+    @keyframes fade {
+      from { opacity: 0; transform: translateY(4px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+  </style>
+</head>
+<body>
+  <header class="topbar">
+    <div class="wrap topbar-inner">
+      <div class="brand">Ship<em>by ihsan.build</em></div>
+      <div class="toggle" role="tablist" aria-label="Audience">
+        <button type="button" data-audience-btn="students" aria-pressed="true">For Students</button>
+        <button type="button" data-audience-btn="parents" aria-pressed="false">For Parents</button>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <!-- HERO -->
+    <section class="hero">
+      <div class="wrap">
+        <span class="eyebrow">Pilot cohort · Starts June 18</span>
+
+        <div data-audience="students" class="is-active">
+          <h1>Build real apps. In 6 weeks. With AI as your co-pilot.</h1>
+          <p class="lede">You know those ideas you have for stuff that doesn't exist yet? A study app for something you actually care about. A tracker for your fantasy league. A tool that solves a problem nobody else has noticed. You're going to build those — and ship them.</p>
+        </div>
+
+        <div data-audience="parents">
+          <h1>Structured, project-based training in the skills the AI-native workforce actually hires for.</h1>
+          <p class="lede">Ship is a small-cohort virtual program that teaches curious 7th–12th graders how to design, build, and ship real software using AI as a collaborator. Tangible deliverables. Real portfolio. Real skills.</p>
+        </div>
+
+        <div class="cta-row">
+          <a class="btn" href="#apply">
+            Apply for the pilot
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+          </a>
+          <span class="btn-meta">$50 · 10–12 seats · first come, first served</span>
+        </div>
+
+        <div class="pilot">
+          <p><strong>Pilot pricing:</strong> $50 for the full 6 weeks. After the pilot, Ship becomes a full-price program.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- PROBLEM / VALUE -->
+    <section>
+      <div class="wrap">
+        <div data-audience="students" class="is-active">
+          <div class="section-label">Why this, why now</div>
+          <h2>Everyone else is doing the same checklist. You can build something only you could have built.</h2>
+          <p>Grades, APs, honor societies, lab research, robotics. Every strong student has them. The people who stand out aren't the ones with the longest list — they're the ones who shipped real things with their name on them. It has never been easier to do this. And it has never mattered more.</p>
+          <p>This is genuinely the most useful thing you can be doing with your time right now.</p>
+        </div>
+
+        <div data-audience="parents">
+          <div class="section-label">Why this, why now</div>
+          <h2>Every strong applicant looks the same on paper. The ones who stand out built something only they could have built.</h2>
+          <p>Admissions officers and hiring managers read thousands of resumes that look identical. The students who break through aren't the ones with the longest list — they're the ones who shipped real software with their name attached. This has never been easier to do, and it has never mattered more.</p>
+          <p>Ship is not a typing class or a summer coding toy. It's structured, project-based training in product thinking, design, engineering, and AI fluency — the same stack the best adults in the workforce are learning to use right now. Small cohort means real feedback. Virtual means no logistics headache.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- WHAT THEY'LL SHIP -->
+    <section>
+      <div class="wrap">
+        <div class="section-label">What your student will ship</div>
+        <h2 data-audience="students" class="is-active">What you'll walk away with</h2>
+        <h2 data-audience="parents">Six real deliverables. Six weeks.</h2>
+
+        <ol class="ship-list">
+          <li><span class="num">01</span><div><b>A personal website</b> live on a real custom domain.</div></li>
+          <li><span class="num">02</span><div><b>An interactive app</b> saved to their iPhone home screen as a PWA.</div></li>
+          <li><span class="num">03</span><div><b>A data-powered app</b> pulling live info from the real internet.</div></li>
+          <li><span class="num">04</span><div><b>A full-stack app</b> with logins, saved data, and real users.</div></li>
+          <li><span class="num">05</span><div><b>An AI-powered app</b> with Claude built in — plus their own custom Claude Skill.</div></li>
+          <li><span class="num">06</span><div><b>A native iOS app</b> running on their own phone, ending in a demo day.</div></li>
+        </ol>
+      </div>
+    </section>
+
+    <!-- SKILLS -->
+    <section>
+      <div class="wrap">
+        <div class="section-label">The three skills they'll actually learn</div>
+        <h2 data-audience="students" class="is-active">Modern building is becoming one job. You'll learn all of it.</h2>
+        <h2 data-audience="parents">Modern building is becoming one job. Ship teaches all three.</h2>
+
+        <div class="skills">
+          <div class="skill"><h3>Product intuition</h3><p>How to decide <em>what</em> to build — and what not to.</p></div>
+          <div class="skill"><h3>Design sense</h3><p>How to make it feel great. Typography, spacing, motion.</p></div>
+          <div class="skill"><h3>Engineering fluency</h3><p>How to make it actually work — and ship it live.</p></div>
+        </div>
+        <p style="margin-top:24px;">Plus the meta-skill: <strong style="color:var(--ink)">how to get real work out of AI</strong>. Not "AI for homework." AI as a collaborator, the way the best builders in the workforce are learning to use it right now.</p>
+      </div>
+    </section>
+
+    <!-- FORMAT -->
+    <section>
+      <div class="wrap">
+        <div class="section-label">The format</div>
+        <h2>Six weeks. Live on Zoom. Real tools.</h2>
+        <div class="facts">
+          <div class="fact"><div class="fact-label">Duration</div><div class="fact-value">6 weeks · 90-min sessions</div></div>
+          <div class="fact"><div class="fact-label">Starts</div><div class="fact-value">June 18 (summer kickoff)</div></div>
+          <div class="fact"><div class="fact-label">Cohort size</div><div class="fact-value">10–12 students</div></div>
+          <div class="fact"><div class="fact-label">Office hours</div><div class="fact-value">Weekly drop-in, every week</div></div>
+          <div class="fact"><div class="fact-label">Prerequisites</div><div class="fact-value">Curiosity. That's it.</div></div>
+          <div class="fact"><div class="fact-label">Pilot price</div><div class="fact-value">$50 · full program</div></div>
+        </div>
+        <p style="margin-top:24px;"><strong style="color:var(--ink)">Real tools, not toy versions:</strong> Claude, ChatGPT, Gemini, GitHub, Vercel, Supabase, Claude Code, Capacitor — the same stack professional builders use every day.</p>
+      </div>
+    </section>
+
+    <!-- TEACHER -->
+    <section class="teacher">
+      <div class="wrap">
+        <div class="section-label">Who's teaching</div>
+        <h2>Adib Choudhury</h2>
+        <p>Operator, investor, and builder based in San Francisco. Adib grew up in Northern Virginia and earned a <strong style="color:var(--ink)">B.S. in Commerce (Finance) from the University of Virginia's McIntire School of Commerce</strong>. His career spans software companies, investing and M&amp;A, and executive leadership, and he currently serves on the boards of several startups and nonprofits.</p>
+        <p>Outside of work, Adib has shipped <strong style="color:var(--ink)">more than a dozen personal apps using AI</strong> — including a Quranic study app, a native iOS reading tracker, and a personal stock metrics dashboard — all on <a href="https://ihsan.build">ihsan.build</a>. He's teaching Ship because he believes every curious student should know how to turn an idea into a real, shippable product.</p>
+        <p>→ More about Adib: <a href="https://adib.ihsan.build"><strong>adib.ihsan.build</strong></a></p>
+      </div>
+    </section>
+
+    <!-- APPLY -->
+    <section class="apply" id="apply">
+      <div class="wrap">
+        <div class="apply-card">
+          <div class="section-label" style="color: rgba(251,247,240,0.6);">Apply for the pilot</div>
+          <h2>One question. One text box.</h2>
+          <blockquote>"What's something you wish existed — that you'd want to build?"</blockquote>
+          <p>Spots are limited to <strong style="color:var(--bg)">10–12</strong>. Cohort starts <strong style="color:var(--bg)">June 18</strong>. First come, first served.</p>
+          <div style="margin-top: 24px;">
+            <a class="btn" href="mailto:adib@ihsan.build?subject=Ship.Ihsan%20Pilot%20Application&body=Student%20name%3A%0AGrade%3A%0AEmail%3A%0A%0AWhat%27s%20something%20you%20wish%20existed%20%E2%80%94%20that%20you%27d%20want%20to%20build%3F%0A">
+              Apply now
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+            </a>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="wrap">
+      Built by Adib Choudhury · <a href="https://ihsan.build">ihsan.build</a>
+    </div>
+  </footer>
+
+  <script>
+    (function () {
+      const btns = document.querySelectorAll('[data-audience-btn]');
+      const panels = document.querySelectorAll('[data-audience]');
+
+      function setAudience(value) {
+        btns.forEach(b => {
+          const on = b.dataset.audienceBtn === value;
+          b.setAttribute('aria-pressed', on ? 'true' : 'false');
+        });
+        panels.forEach(p => {
+          const on = p.dataset.audience === value;
+          p.classList.toggle('is-active', on);
+          if (on) {
+            p.classList.remove('swap');
+            // force reflow to restart animation
+            void p.offsetWidth;
+            p.classList.add('swap');
+          }
+        });
+        try { localStorage.setItem('ship.audience', value); } catch (e) {}
+      }
+
+      btns.forEach(b => b.addEventListener('click', () => setAudience(b.dataset.audienceBtn)));
+
+      let initial = 'students';
+      try {
+        const saved = localStorage.getItem('ship.audience');
+        if (saved === 'parents' || saved === 'students') initial = saved;
+      } catch (e) {}
+      setAudience(initial);
+    })();
+  </script>
+</body>
+</html>
