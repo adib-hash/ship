@@ -1,3 +1,19 @@
+---
+tags:
+  - AI fluency
+  - prompting
+  - web development
+  - APIs
+  - full-stack development
+people:
+  - Adib Choudhury
+tools:
+  - Claude
+  - ChatGPT
+  - Gemini
+  - GitHub
+  - Vercel
+---
 # Ship.Ihsan — Curriculum (Professionals Edition)
 ### Six 90-minute sessions + weekly drop-in office hours
 
