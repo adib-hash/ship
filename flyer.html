@@ -1,0 +1,481 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400&family=DM+Sans:wght@400;500;600&display=swap');
+
+    :root {
+      --bg: #FBF7F0;
+      --bg-soft: #F3ECDF;
+      --ink: #14110E;
+      --ink-2: #3A332B;
+      --ink-3: #6B6257;
+      --line: #E3D9C7;
+      --accent: #E8502B;
+      --accent-dark: #C73D17;
+      --accent-soft: #FCE4D8;
+    }
+
+    @page {
+      size: A4;
+      margin: 0;
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      width: 210mm;
+      height: 297mm;
+      background: var(--bg);
+      color: var(--ink);
+      font-family: "DM Sans", -apple-system, BlinkMacSystemFont, sans-serif;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    .page {
+      width: 210mm;
+      height: 297mm;
+      padding: 20mm 22mm 14mm;
+      display: flex;
+      flex-direction: column;
+      position: relative;
+      overflow: hidden;
+    }
+
+    /* Decorative top bar */
+    .top-bar {
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 5mm;
+      background: var(--accent);
+    }
+
+    /* Brand header */
+    .header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 6mm;
+    }
+
+    .brand {
+      font-family: "Playfair Display", Georgia, serif;
+      font-weight: 700;
+      font-size: 20pt;
+      color: var(--ink);
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .brand-dot {
+      width: 9px;
+      height: 9px;
+      border-radius: 50%;
+      background: var(--accent);
+      display: inline-block;
+    }
+
+    .brand-sub {
+      font-family: "Playfair Display", Georgia, serif;
+      font-style: italic;
+      font-weight: 500;
+      color: var(--ink-3);
+      font-size: 12pt;
+      margin-left: 2px;
+    }
+
+    .eyebrow {
+      font-size: 7.5pt;
+      font-weight: 600;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--accent);
+      background: var(--accent-soft);
+      padding: 3px 10px;
+      border-radius: 999px;
+    }
+
+    /* Hero section */
+    .hero {
+      margin-bottom: 5mm;
+    }
+
+    .hero h1 {
+      font-family: "Playfair Display", Georgia, serif;
+      font-size: 24pt;
+      font-weight: 700;
+      line-height: 1.1;
+      color: var(--ink);
+      letter-spacing: -0.01em;
+      margin-bottom: 3mm;
+    }
+
+    .hero p {
+      font-size: 9.5pt;
+      line-height: 1.5;
+      color: var(--ink-2);
+      max-width: 150mm;
+    }
+
+    /* Specs grid */
+    .specs {
+      display: grid;
+      grid-template-columns: 1fr 1fr 1fr;
+      gap: 2mm;
+      margin-bottom: 4mm;
+    }
+
+    .spec {
+      background: var(--bg-soft);
+      border: 0.5px solid var(--line);
+      border-radius: 3mm;
+      padding: 3mm 3.5mm;
+    }
+
+    .spec-label {
+      font-size: 6pt;
+      font-weight: 600;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--ink-3);
+      margin-bottom: 1mm;
+    }
+
+    .spec-value {
+      font-size: 9.5pt;
+      font-weight: 600;
+      color: var(--ink);
+      line-height: 1.25;
+    }
+
+    .spec-value small {
+      font-size: 7pt;
+      font-weight: 400;
+      color: var(--ink-3);
+    }
+
+    /* Pricing row */
+    .pricing {
+      background: var(--bg-soft);
+      border: 0.5px solid var(--line);
+      border-left: 3px solid var(--accent);
+      border-radius: 3mm;
+      padding: 3mm 5mm;
+      margin-bottom: 5mm;
+      display: flex;
+      align-items: center;
+      gap: 5mm;
+    }
+
+    .pricing-title {
+      font-family: "Playfair Display", Georgia, serif;
+      font-size: 9pt;
+      font-weight: 600;
+      color: var(--ink);
+      white-space: nowrap;
+    }
+
+    .pricing-items {
+      display: flex;
+      gap: 5mm;
+    }
+
+    .pricing-item {
+      display: flex;
+      align-items: baseline;
+      gap: 1.5mm;
+    }
+
+    .pricing-amount {
+      font-size: 11pt;
+      font-weight: 600;
+      color: var(--accent);
+    }
+
+    .pricing-amount span {
+      font-size: 8pt;
+      font-weight: 500;
+    }
+
+    .pricing-desc {
+      font-size: 7pt;
+      color: var(--ink-3);
+    }
+
+    /* Section label */
+    .section-label {
+      font-size: 6.5pt;
+      font-weight: 600;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--ink-3);
+      margin-bottom: 2mm;
+      display: flex;
+      align-items: center;
+      gap: 3mm;
+    }
+
+    .section-label::before {
+      content: "";
+      display: inline-block;
+      width: 14px;
+      height: 2px;
+      background: var(--accent);
+    }
+
+    /* Curriculum */
+    .curriculum {
+      margin-bottom: 5mm;
+    }
+
+    .curriculum h2 {
+      font-family: "Playfair Display", Georgia, serif;
+      font-size: 13pt;
+      font-weight: 600;
+      color: var(--ink);
+      margin-bottom: 3mm;
+      line-height: 1.2;
+    }
+
+    .session-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr 1fr;
+      gap: 2mm;
+    }
+
+    .session {
+      border: 0.5px solid var(--line);
+      border-top: 2.5px solid var(--accent);
+      border-radius: 3mm;
+      padding: 2.5mm 3mm;
+      background: white;
+    }
+
+    .session-num {
+      font-size: 5.5pt;
+      font-weight: 600;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: 0.5mm;
+    }
+
+    .session-title {
+      font-family: "Playfair Display", Georgia, serif;
+      font-size: 7.5pt;
+      font-weight: 600;
+      color: var(--ink);
+      line-height: 1.2;
+      margin-bottom: 1.2mm;
+    }
+
+    .session-ship {
+      font-size: 6pt;
+      color: var(--accent-dark);
+      background: var(--accent-soft);
+      padding: 1px 5px;
+      border-radius: 999px;
+      display: inline-block;
+      font-weight: 500;
+      line-height: 1.4;
+    }
+
+    /* CTA section — includes footer info */
+    .cta-section {
+      margin-top: auto;
+      background: var(--ink);
+      border-radius: 4mm;
+      padding: 5.5mm 7mm 4.5mm;
+    }
+
+    .cta-top {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 5mm;
+    }
+
+    .cta-left h3 {
+      font-family: "Playfair Display", Georgia, serif;
+      font-size: 13pt;
+      font-weight: 600;
+      color: var(--bg);
+      line-height: 1.2;
+      margin-bottom: 1mm;
+    }
+
+    .cta-left p {
+      font-size: 7.5pt;
+      color: rgba(251, 247, 240, 0.65);
+      line-height: 1.4;
+    }
+
+    .cta-button {
+      display: inline-flex;
+      align-items: center;
+      gap: 5px;
+      background: var(--accent);
+      color: #fff;
+      padding: 3.5mm 7mm;
+      border-radius: 999px;
+      font-weight: 600;
+      font-size: 10.5pt;
+      text-decoration: none;
+      white-space: nowrap;
+    }
+
+    .cta-right {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-end;
+      gap: 1mm;
+    }
+
+    .cta-url {
+      font-size: 7pt;
+      color: rgba(251, 247, 240, 0.45);
+      margin-top: 1mm;
+    }
+
+    .cta-footer {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-top: 3.5mm;
+      padding-top: 3mm;
+      border-top: 0.5px solid rgba(251, 247, 240, 0.12);
+    }
+
+    .cta-footer span {
+      font-size: 6.5pt;
+      color: rgba(251, 247, 240, 0.4);
+    }
+  </style>
+</head>
+<body>
+  <div class="page">
+    <div class="top-bar"></div>
+
+    <!-- Header -->
+    <div class="header">
+      <div class="brand">
+        <span class="brand-dot"></span>Ship<span class="brand-sub"> by ihsan.build</span>
+      </div>
+      <span class="eyebrow">Pilot Cohort &middot; Starts Soon</span>
+    </div>
+
+    <!-- Hero -->
+    <div class="hero">
+      <h1>Turn your ideas into real apps.<br>No engineering background required.</h1>
+      <p>A six-week, small-cohort virtual program for operators, investors, consultants, and professionals who want to build real apps with AI. You leave with six shipped products and genuine AI fluency.</p>
+    </div>
+
+    <!-- Specs grid -->
+    <div class="specs">
+      <div class="spec">
+        <div class="spec-label">Duration</div>
+        <div class="spec-value">6 Weeks<br><small>90-min live sessions</small></div>
+      </div>
+      <div class="spec">
+        <div class="spec-label">Format</div>
+        <div class="spec-value">Live on Zoom<br><small>+ weekly office hours</small></div>
+      </div>
+      <div class="spec">
+        <div class="spec-label">Cohort Size</div>
+        <div class="spec-value">10 &ndash; 12<br><small>professionals</small></div>
+      </div>
+      <div class="spec">
+        <div class="spec-label">Prerequisites</div>
+        <div class="spec-value">None<br><small>No coding experience needed</small></div>
+      </div>
+      <div class="spec">
+        <div class="spec-label">Instructor</div>
+        <div class="spec-value">Adib Choudhury<br><small>Operator &amp; builder, SF</small></div>
+      </div>
+      <div class="spec">
+        <div class="spec-label">Deliverables</div>
+        <div class="spec-value">6 Shipped Apps<br><small>Live on the internet</small></div>
+      </div>
+    </div>
+
+    <!-- Pricing -->
+    <div class="pricing">
+      <div class="pricing-title">Pilot Pricing</div>
+      <div class="pricing-items">
+        <div class="pricing-item">
+          <span class="pricing-amount">$100</span>
+          <span class="pricing-desc">program fee</span>
+        </div>
+        <div class="pricing-item">
+          <span class="pricing-amount">$20<span>/mo</span></span>
+          <span class="pricing-desc">Claude Pro</span>
+        </div>
+        <div class="pricing-item">
+          <span class="pricing-amount">$5</span>
+          <span class="pricing-desc">API credits (one-time)</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Curriculum -->
+    <div class="curriculum">
+      <div class="section-label">What you'll build</div>
+      <h2>Six sessions. One real deliverable each week.</h2>
+      <div class="session-grid">
+        <div class="session">
+          <div class="session-num">Session 1</div>
+          <div class="session-title">AI Fluency + Your First Website</div>
+          <span class="session-ship">Ship: A live website at your domain</span>
+        </div>
+        <div class="session">
+          <div class="session-num">Session 2</div>
+          <div class="session-title">Planning Like a Builder + Interactive Apps</div>
+          <span class="session-ship">Ship: A work tool on your phone</span>
+        </div>
+        <div class="session">
+          <div class="session-num">Session 3</div>
+          <div class="session-title">Working With APIs</div>
+          <span class="session-ship">Ship: A data-driven app</span>
+        </div>
+        <div class="session">
+          <div class="session-num">Session 4</div>
+          <div class="session-title">Full-Stack Apps With Supabase</div>
+          <span class="session-ship">Ship: An app with users &amp; data</span>
+        </div>
+        <div class="session">
+          <div class="session-num">Session 5</div>
+          <div class="session-title">Claude Code, the API + Skills</div>
+          <span class="session-ship">Ship: An AI-powered feature</span>
+        </div>
+        <div class="session">
+          <div class="session-num">Session 6</div>
+          <div class="session-title">Native iOS App + Demo Day</div>
+          <span class="session-ship">Ship: A native app on your phone</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- CTA (includes footer) -->
+    <div class="cta-section">
+      <div class="cta-top">
+        <div class="cta-left">
+          <h3>Ready to start building?</h3>
+          <p>Pilot spots are limited to 10&ndash;12 seats. This is the cheapest Ship will ever be.</p>
+        </div>
+        <div class="cta-right">
+          <a class="cta-button" href="https://ship.ihsan.build#apply">Apply Now &rarr;</a>
+          <div class="cta-url">ship.ihsan.build</div>
+        </div>
+      </div>
+      <div class="cta-footer">
+        <span>Built by Adib Choudhury &middot; ihsan.build</span>
+        <span>adib@ihsan.build</span>
+      </div>
+    </div>
+  </div>
+</body>
+</html>
